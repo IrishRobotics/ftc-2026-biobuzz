@@ -101,7 +101,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
         double revolutions3 = position1/CPR;
         double revolutions4 = position1/CPR;
         double angle1 = revolutions1 * 360;
-        double angle2 = revolutions2* 360;
+        double angle2 = revolutions2 * 360;
         double angle3 = revolutions3 * 360;
         double angle4 = revolutions4 * 360;
         double angleNormalized1 = angle1 % 360;
@@ -110,14 +110,14 @@ public class MyFIRSTJavaOpMode extends OpMode {
         double angleNormalized4 = angle4 % 360;
 
         // run until the end of the match (driver presses STOP)
-        if (gamepad1.a) {
+        if (gamepad2.a) {
             intake.setPower(intakePower);
         } else {
             intake.setPower(0);
         }
-        if (gamepad1.b) {
+        if (gamepad2.b) {
             shooter.setPower(-shooterPower);
-        } else if (gamepad1.y) {
+        } else if (gamepad2.y) {
             shooter.setPower(shooterPower);
         } else {
             shooter.setPower(0);
