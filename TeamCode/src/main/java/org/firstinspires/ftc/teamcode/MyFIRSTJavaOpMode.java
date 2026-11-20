@@ -111,7 +111,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
 
         // run until the end of the match (driver presses STOP)
         if (gamepad2.a) {
-            intake.setPower(intakePower);
+            intake.setPower(-intakePower);
         } else {
             intake.setPower(0);
         }
