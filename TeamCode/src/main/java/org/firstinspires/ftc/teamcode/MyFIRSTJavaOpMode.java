@@ -77,49 +77,54 @@ public class MyFIRSTJavaOpMode extends OpMode {
         telemetry.addLine("Press A To Reset Yaw");
         telemetry.addLine("Moving The Right Joystick Left And Right Turns The Bot Left And Right");
         telemetry.addLine("The Left Stick moves the robot back and forth + strafes");
-        int position1 = frontright.getCurrentPosition();
-        int position2 = frontleft.getCurrentPosition();
-        int position3 = backright.getCurrentPosition();
-        int position4 = backleft.getCurrentPosition();
+//        int position1 = frontright.getCurrentPosition();
+//        int position2 = frontleft.getCurrentPosition();
+//        int position3 = backright.getCurrentPosition();
+//        int position4 = backleft.getCurrentPosition();
 
         if (gamepad1.a) {
             imu.resetYaw();
         }
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
-        double rotX = xPower * Math.cos(-botHeading) - yPower * Math.sin(-botHeading);
-        double rotY = xPower * Math.sin(-botHeading) + yPower * Math.cos(-botHeading);
-        rotX = rotX * 1.1;
+//        double rotX = xPower * Math.cos(-botHeading) - yPower * Math.sin(-botHeading);
+//        double rotY = xPower * Math.sin(-botHeading) + yPower * Math.cos(-botHeading);
+//        rotX = rotX * 1.1;
 
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rxPower), 1);
-        double frontleftPower = (rotY + rotX + rxPower) / denominator;
-        double frontrightPower = (rotY - rotX - rxPower) / denominator;
-        double backrightPower = (rotY + rotX - rxPower) / denominator;
-        double backleftPower = (rotY - rotX + rxPower) / denominator;
-        double CPR = 28;
-        double revolutions1 = position1/CPR;
-        double revolutions2 = position1/CPR;
-        double revolutions3 = position1/CPR;
-        double revolutions4 = position1/CPR;
-        double angle1 = revolutions1 * 360;
-        double angle2 = revolutions2 * 360;
-        double angle3 = revolutions3 * 360;
-        double angle4 = revolutions4 * 360;
-        double angleNormalized1 = angle1 % 360;
-        double angleNormalized2 = angle2 % 360;
-        double angleNormalized3 = angle3 % 360;
-        double angleNormalized4 = angle4 % 360;
+        double denominator = Math.max(Math.abs(yPower) + Math.abs(xPower) + Math.abs(rxPower), 1);
+        double frontleftPower = (yPower + xPower + rxPower) / denominator;
+        double frontrightPower = (yPower - xPower - rxPower) / denominator;
+        double backrightPower = (yPower + xPower - rxPower) / denominator;
+        double backleftPower = (yPower - xPower + rxPower) / denominator;
+//        double CPR = 28;
+//        double revolutions1 = position1/CPR;
+//        double revolutions2 = position1/CPR;
+//        double revolutions3 = position1/CPR;
+//        double revolutions4 = position1/CPR;
+//        double angle1 = revolutions1 * 360;
+//        double angle2 = revolutions2 * 360;
+//        double angle3 = revolutions3 * 360;
+//        double angle4 = revolutions4 * 360;
+//        double angleNormalized1 = angle1 % 360;
+//        double angleNormalized2 = angle2 % 360;
+//        double angleNormalized3 = angle3 % 360;
+//        double angleNormalized4 = angle4 % 360;
 
         // run until the end of the match (driver presses STOP)
-        if (gamepad2.left_bumper) {
+        if (gamepad2.right_bumper) {
             intake.setPower(-intakePower);
+        } else if (gamepad2.x){
+            intake.setPower(intakePower);
         } else {
             intake.setPower(0);
         }
+
+
+
         if (gamepad2.b) {
             shooter.setPower(shooterreversePower);
         }
-        if (gamepad2.right_bumper) {
+        if (gamepad2.left_bumper) {
             shooter.setPower(shooterPower);
         } else {
             shooter.setPower(0);
@@ -132,15 +137,16 @@ public class MyFIRSTJavaOpMode extends OpMode {
         frontright.setPower(frontrightPower);
         backright.setPower(backrightPower);
         telemetry.addData("Target Power", yPower);
-        telemetry.addData("Frontright Encoder Position", position1);
-        telemetry.addData("Frontleft Encoder Position", position2);
-        telemetry.addData("Backright Encoder Position", position3);
-        telemetry.addData("Backleft Encoder Position", position4);
-        telemetry.addData("Motor Power", frontright.getPower());
-        telemetry.addData("Intake Power", shooter.getPower());
-        telemetry.addData("Motor Power", frontleft.getPower());
-        telemetry.addData("Motor Power", backleft.getPower());
-        telemetry.addData("Motor Power", backright.getPower());
+//        telemetry.addData("Frontright Encoder Position", position1);
+//        telemetry.addData("Frontleft Encoder Position", position2);
+//        telemetry.addData("Backright Encoder Position", position3);
+//        telemetry.addData("Backleft Encoder Position", position4);
+        telemetry.addData("Shooter Power", shooter.getPower());
+        telemetry.addData("Intake Power", intake.getPower());
+        telemetry.addData("Frontright Motor Power", frontright.getPower());
+        telemetry.addData("Frontleft Motor Power", frontleft.getPower());
+        telemetry.addData("Backleft Motor Power", backleft.getPower());
+        telemetry.addData("Backright Motor Power", backright.getPower());
         telemetry.addData("Status", "Running");
         telemetry.update();
     }
