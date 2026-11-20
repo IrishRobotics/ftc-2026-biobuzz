@@ -20,7 +20,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
     double yPower = 0;
     double rxPower = 0;
     double xPower = 0;
-    double shooterPower = 0.85;
+    double shooterPower = 0.75;
     double intakePower = 1;
     double denominator = 1;
 
@@ -110,14 +110,12 @@ public class MyFIRSTJavaOpMode extends OpMode {
         double angleNormalized4 = angle4 % 360;
 
         // run until the end of the match (driver presses STOP)
-        if (gamepad2.a) {
+        if (gamepad2.left_bumper) {
             intake.setPower(-intakePower);
         } else {
             intake.setPower(0);
         }
-        if (gamepad2.b) {
-            shooter.setPower(-shooterPower);
-        } else if (gamepad2.y) {
+        if (gamepad2.right_bumper) {
             shooter.setPower(shooterPower);
         } else {
             shooter.setPower(0);
