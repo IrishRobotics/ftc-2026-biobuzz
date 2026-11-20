@@ -21,6 +21,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
     double rxPower = 0;
     double xPower = 0;
     double shooterPower = 0.75;
+    double shooterreversePower = 0.25;
     double intakePower = 1;
     double denominator = 1;
 
@@ -114,6 +115,9 @@ public class MyFIRSTJavaOpMode extends OpMode {
             intake.setPower(-intakePower);
         } else {
             intake.setPower(0);
+        }
+        if (gamepad2.b) {
+            shooter.setPower(shooterreversePower);
         }
         if (gamepad2.right_bumper) {
             shooter.setPower(shooterPower);
