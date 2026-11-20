@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp
+@TeleOp(name = "TeleOp")
 public class MyFIRSTJavaOpMode extends OpMode {
     private IMU imu;
     private DcMotor frontright;
@@ -24,6 +24,8 @@ public class MyFIRSTJavaOpMode extends OpMode {
     double shooterreversePower = 0.25;
     double intakePower = 1;
     double denominator = 1;
+
+    static final double FRONT_RIGHT_ADJUSTMENT = 0.55;
 
 
 //    private DigitalChannel digitalTouch;
@@ -93,7 +95,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
 
         double denominator = Math.max(Math.abs(yPower) + Math.abs(xPower) + Math.abs(rxPower), 1);
         double frontleftPower = (yPower + xPower + rxPower) / denominator;
-        double frontrightPower = (yPower - xPower - rxPower) / denominator;
+        double frontrightPower = ((yPower - xPower - rxPower) * FRONT_RIGHT_ADJUSTMENT) / denominator;
         double backrightPower = (yPower + xPower - rxPower) / denominator;
         double backleftPower = (yPower - xPower + rxPower) / denominator;
 //        double CPR = 28;
