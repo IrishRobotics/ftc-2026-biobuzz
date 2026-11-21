@@ -21,7 +21,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
     double rxPower = 0;
     double xPower = 0;
     double shooterPower = 0.75;
-    double shooterreversePower = 0.65;
+    double shooterreversePower = 1;
     double intakePower = 1;
     double denominator = 1;
 

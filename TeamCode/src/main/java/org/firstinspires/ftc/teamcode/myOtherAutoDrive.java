@@ -1,22 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @Autonomous(name = "Auto (Right)")
 public class myOtherAutoDrive extends LinearOpMode {
@@ -103,7 +92,7 @@ public class myOtherAutoDrive extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         encoderDrive(FORWARD_SPEED, 11.0, 11.0, 11.0, 11.0, 10.0);  // Goes forward eleven inches with 10 Sec timeout
-        encoderDrive(FORWARD_SPEED, 23.5, -23.5, -23.5, 23.5, 10.0); // Goes a tile (23.5 feet) right
+        encoderDrive(FORWARD_SPEED, 22.0, -22.0, -22.0, 22.0, 10.0); // Goes a tile (23.5 feet) right
 
         while (opModeIsActive() && (runtime.seconds() < 30.0)) {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds()); // What does this mean bruh
