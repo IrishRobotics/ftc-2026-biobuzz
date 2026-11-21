@@ -24,6 +24,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
     double shooterreversePower = 1;
     double intakePower = 1;
     double denominator = 1;
+    boolean isRunning = false;
 
     static final double FRONT_RIGHT_ADJUSTMENT = 0.55;
 
@@ -113,7 +114,7 @@ public class MyFIRSTJavaOpMode extends OpMode {
 //        double angleNormalized4 = angle4 % 360;
 
         // run until the end of the match (driver presses STOP)
-        if (gamepad2.right_trigger > 0.3) {
+        if (gamepad2.right_trigger > 0.4) {
             intake.setPower(-intakePower);
         } else if (gamepad2.x){
             intake.setPower(intakePower);
@@ -121,16 +122,24 @@ public class MyFIRSTJavaOpMode extends OpMode {
             intake.setPower(0);
         }
 
-
-
-        if (gamepad2.b) {
-            shooter.setPower(-shooterreversePower);
-        }
-        if (gamepad2.left_trigger > 0.3) {
+        if (gamepad2.left_trigger > 0.4) {
+            isRunning = true;
             shooter.setPower(shooterPower);
-        } else {
+        }
+        if (gamepad2.left_bumper) {
+            isRunning = false;
             shooter.setPower(0);
         }
+        if (!isRunning) {
+            if (gamepad2.b) {
+                shooter.setPower(-shooterreversePower);
+            }
+            else {
+                shooter.setPower(0);
+            }
+        }
+
+
         yPower = this.gamepad1.left_stick_y;
         xPower = -this.gamepad1.left_stick_x * 1.1;
         rxPower = -this.gamepad1.right_stick_x;
